@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教程文章详情</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :root{
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text-color: #e2e8f0;
+            --muted: #94a3b8;
+            --accent: #38bdf8;
+            --header-bg: #0f172a;
+            --logo-gradient: linear-gradient(135deg, #0f766e, #06b6d4);
+            --radius: 12px;
+            --max-w: 1100px;
+            color-scheme: dark;
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        html[data-theme='light'] {
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text-color: #0f172a;
+            --muted: #64748b;
+            --accent: #0ea5e9;
+            --header-bg: #f1f5f9;
+            --logo-gradient: linear-gradient(135deg, #0ea5e9, #0ea5a3);
+            color-scheme: light;
+        }
+
+        *{box-sizing:border-box}
+        html,body{
+            min-height:100%;
+            margin:0;
+            background:var(--bg);
+            color:var(--text-color);
+        }
+        a{color:var(--accent);text-decoration:none}
+        a:hover{text-decoration:underline}
+
+        .container{max-width:800px;margin:32px auto;padding:20px}
+        
+        /* 头部样式复用 */
+        header{
+            display:flex;
+            align-items:center;
+            gap:16px;
+            justify-content:space-between;
+            background:var(--header-bg);
+            padding: 10px 20px;
+            border-radius: var(--radius);
+        }
+        .brand{display:flex;align-items:center;gap:12px}
+        .logo{
+            width:52px;
+            height:52px;
+            border-radius:10px;
+            background:var(--logo-gradient);
+            display:grid;
+            place-items:center;
+            font-size:22px
+        }
+        .logo svg{
+            width: 60%;
+            height: 60%;
+            fill: #fff;
+        }
+        .site-title{font-weight:700;font-size:18px}
+        .site-sub{font-size:12px;color:var(--muted)}
+        .back-link{color:var(--muted);font-size:14px;display:flex;align-items:center;gap:4px}
+        .back-link:hover{color:var(--text-color)}
+        .meta{font-size:14px;color:var(--muted);margin-bottom:10px;}
+
+        /* 文章内容样式 */
+        .content-card{
+            background:var(--card);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding:30px;
+            border-radius:var(--radius);
+            margin-top:20px;
+        }
+        .content-card h1{margin-top:0;font-size:28px;}
+        .content-card h3{color:var(--accent);margin-top:25px;}
+        .content-card p, .content-card li {line-height:1.6;color:var(--text-color);}
+        .content-card pre, .content-card code {
+            background: var(--bg);
+            color: var(--text-color);
+            padding: 10px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 13px;
+        }
+        .content-card ul { padding-left: 20px; }
+
+        @media (max-width:900px){
+            .container{padding:10px;}
+            .content-card{padding:20px;}
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <div class="container">
+        <header>
+            <div class="brand">
+                <div class="logo" aria-hidden>
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 19V6c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1h-4v2h-2v-2H5c-.55 0-1-.45-1-1zm2-2h12V7H6v10zM8 9h8v2H8V9zm0 4h8v2H8v-2z"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="site-title">教程博客</div>
+                    <div class="site-sub">实用教程 · 源码示例 · 快速入门</div>
+                </div>
+            </div>
+            
+            <a href="index.html" class="back-link"><i class="ri-arrow-left-line"></i> 返回首页</a>
+        </header>
+
+        <main id="tutorial-content" class="content-card">
+            <h1>文章加载中...</h1>
+        </main>
+
+        <footer>
+            </footer>
+    </div>
+
+    <script>
+        const contentContainer = document.getElementById('tutorial-content');
+
+        // 1. 获取 URL 中的 ID 参数
+        function getTutorialId() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('id');
+        }
+
+        // 2. 从 tutorials.json 加载并显示内容
+        async function loadTutorialContent(id) {
+            if (!id) {
+                contentContainer.innerHTML = '<h1>错误</h1><p class="meta">未指定文章 ID。</p>';
+                return;
+            }
+
+            try {
+                const response = await fetch('tutorials.json');
+                if (!response.ok) throw new Error('Failed to load tutorials.json');
+                
+                const data = await response.json();
+                const tutorial = data[id];
+
+                if (tutorial) {
+                    contentContainer.innerHTML = `
+                        <h1>${tutorial.title}</h1>
+                        <p class="meta">${tutorial.meta}</p>
+                        <hr style="border-color: rgba(255,255,255,0.1); margin-bottom: 20px;">
+                        ${tutorial.content_html}
+                    `;
+                    document.title = tutorial.title;
+                } else {
+                    contentContainer.innerHTML = '<h1>未找到文章</h1><p class="meta">指定 ID 的文章不存在。</p>';
+                    document.title = '404 - 未找到';
+                }
+
+            } catch (error) {
+                console.error('加载文章详情失败:', error);
+                contentContainer.innerHTML = '<h1>加载失败</h1><p class="meta">无法连接到数据源。</p>';
+            }
+        }
+
+        loadTutorialContent(getTutorialId());
+
+        // 可选：实现主题同步
+        const html = document.documentElement;
+        let savedTheme = localStorage.getItem('theme') || 'dark'; // 假设默认是 dark
+        html.setAttribute('data-theme', savedTheme);
+    </script>
+</body>
+</html>

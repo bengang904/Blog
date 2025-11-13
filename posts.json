@@ -1,0 +1,68 @@
+[
+  {
+    "id": "drag-upload-js",
+    "title": "如何用原生 JavaScript 实现拖放上传（含进度条）",
+    "data_title": "如何用原生JS做拖放上传",
+    "meta": "前端 · 2025-10-30",
+    "excerpt": "完整示例 + 后端接收示例，讲解 File API、FormData 与进度显示。",
+    "link": "drag-upload-js",
+    "cover_img": "cover1.jpg",
+    "alt": "JS 教程封面",
+    "tags": ["JavaScript", "前端"] 
+  },
+  {
+    "id": "node-rest-api",
+    "title": "在 Node.js 上快速搭建一个小型 REST API",
+    "data_title": "在Node上搭建小型API服务",
+    "meta": "后端 · 2025-09-12",
+    "excerpt": "包含路由、验证与单元测试的最小项目结构，适合入门与逐步扩展。",
+    "link": "node-rest-api",
+    "cover_img": "cover2.jpg",
+    "alt": "API 封面",
+    "tags": ["Node.js", "后端", "API"]
+  },
+  {
+    "id": "wasm-gaming",
+    "title": "把老游戏移植到浏览器：WASM 与资源加载最佳实践",
+    "data_title": "使用WASM运行经典游戏",
+    "meta": "进阶 · 2025-08-01",
+    "excerpt": "解析常见错误、内存与 Table 越界问题、以及渐进加载策略。",
+    "link": "wasm-gaming",
+    "cover_img": "cover3.jpg",
+    "alt": "WASM 封面",
+    "tags": ["WASM", "进阶", "前端"]
+  },
+  {
+    "id": "diy-plush-pattern",
+    "title": "开源毛绒玩偶裁片图纸与缝制教程（含可打印 SVG）",
+    "data_title": "制作开源毛绒玩偶图纸",
+    "meta": "手工 · 2025-07-18",
+    "excerpt": "从设计到缝合的每一步，带有可下载模板与常见问题解答。",
+    "link": "diy-plush-pattern",
+    "cover_img": "cover4.jpg",
+    "alt": "DIY 封面",
+    "tags": ["手工艺", "DIY"]
+  },
+  {
+    "id": "test-post-5",
+    "title": "这是第五篇测试文章，用来演示分页效果。",
+    "data_title": "第五篇测试文章 - 演示分页",
+    "meta": "测试 · 2025-07-01",
+    "excerpt": "这是分页的第二页应该出现的第一篇文章。",
+    "link": "test-post-5",
+    "cover_img": "cover5.jpg",
+    "alt": "TEST 封面",
+    "tags": ["测试"]
+  },
+  {
+    "id": "test-post-6",
+    "title": "第六篇文章：确保进入第三页",
+    "data_title": "第六篇测试文章 - 演示分页",
+    "meta": "测试 · 2025-06-25",
+    "excerpt": "如果每页 4 篇，第六篇应该在第二页。",
+    "link": "test-post-6",
+    "cover_img": "cover6.jpg",
+    "alt": "TEST 封面",
+    "tags": ["测试"]
+  }
+]
