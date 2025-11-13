@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>教程文章详情</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <!-- 引入 Prism.js CSS (使用 tomorrow dark 主题) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
     <style>
         :root{
             --bg: #0f172a;
@@ -57,6 +61,7 @@
         .logo{
             width:52px;
             height:52px;
+            aspect-ratio: 1 / 1; 
             border-radius:10px;
             background:var(--logo-gradient);
             display:grid;
@@ -85,14 +90,26 @@
         .content-card h1{margin-top:0;font-size:28px;}
         .content-card h3{color:var(--accent);margin-top:25px;}
         .content-card p, .content-card li {line-height:1.6;color:var(--text-color);}
+        
+        /* 1. 多行代码块（pre/code）样式调整：让 Prism 接管背景和颜色 */
         .content-card pre, .content-card code {
-            background: var(--bg);
-            color: var(--text-color);
-            padding: 10px;
+            /* 移除背景/颜色，让 Prism.css 负责高亮样式 */
             border-radius: 6px;
             overflow-x: auto;
             font-size: 13px;
+            line-height: 1.6; /* 保持行高修复 */
         }
+
+        /* 2. 确保行内代码（:not(pre) > code）保持主题内联样式 */
+        .content-card :not(pre) > code {
+            background: var(--header-bg); /* 使用深色背景作为内联代码背景 */
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 90%;
+            color: var(--text-color);
+        }
+
         .content-card ul { padding-left: 20px; }
 
         @media (max-width:900px){
@@ -127,6 +144,15 @@
             </footer>
     </div>
 
+    <!-- 引入 Prism.js JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <!-- 引入常用语言组件 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+
     <script>
         const contentContainer = document.getElementById('tutorial-content');
 
@@ -144,7 +170,8 @@
             }
 
             try {
-                const response = await fetch('tutorials.json');
+                // 假设 tutorials.json 包含文章的详细内容
+                const response = await fetch('tutorials.json'); 
                 if (!response.ok) throw new Error('Failed to load tutorials.json');
                 
                 const data = await response.json();
@@ -158,6 +185,10 @@
                         ${tutorial.content_html}
                     `;
                     document.title = tutorial.title;
+                    
+                    // 3. 调用 Prism 渲染高亮
+                    Prism.highlightAll();
+
                 } else {
                     contentContainer.innerHTML = '<h1>未找到文章</h1><p class="meta">指定 ID 的文章不存在。</p>';
                     document.title = '404 - 未找到';
