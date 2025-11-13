@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tutorials version="1.0">
+    <tutorial id="chrome-apk">
+        <content_html>
+            <![CDATA[
+              <h3>适用于 Windows10 系统</h3>
+                <p>首先需要下载 Chrome80 便携版，下载链接 
+                  <a href="https://blog.2024-10-24.zip/file/chrome80.zip" target="_blank" download>
+                      https://blog.2024-10-24.zip/file/chrome80.zip
+                  </a>
+              </p>
+                <h3>下载 ARChon 插件扩展</h3>
+                <p>ARChon Runtime for Chrome 的下载链接
+                  <a href="https://bitbucket.org/vladikoff/archon/get/v2.1.0-x86_64.zip" target="_blank" download>
+                      https://bitbucket.org/vladikoff/archon/get/v2.1.0-x86_64.zip
+                  </a>
+                </p>
+                <p>全部解压后，打开运行 Chrome80，在 
+                <a href="chrome://extensions" target="_blank">
+                      chrome://extensions
+                  </a>扩展程序中打开：开发者模式
+                </p>
+                <h3>安装 ARChon 插件扩展</h3>
+                <p>点击：加载已解压的扩展程序，添加解压 ARChon Runtime for Chrome 后内层的 vladikoff-archon-e3c9b322402a 文件夹</p>             
+                <h3>安装 APK 转换工具</h3>
+                <p>在计算机安装 Node.js 后，打开自带的 Powershell 终端，并粘贴以下命令进行安装：</p>
+                <pre><code class="language-javascript">npm install chromeos-apk -g</code></pre>
+                <p>准备一个下载好的 APK，粘贴以下命令进行转换：</p>
+                <pre><code class="language-javascript">chromeos-apk 【替换为apk名称】</code></pre>
+                <p>在目录下打开生成项目的 manifest.json，找到字段"name"的值并复制。继续打开项目的_locales\en\messages.json，在"extName"{}添加"message":"复制的值"，以防止运行时出错</p>
+                <h3>安装 APK 转换的插件扩展</h3>
+                <p>在 Chrome80 的
+                <a href="chrome://extensions" target="_blank">
+                      chrome://extensions
+                  </a>点击：加载已解压的扩展程序，添加项目文件夹
+                </p>
+                <h3>运行</h3>
+                <p>在 Chrome80 的
+                <a href="chrome://apps" target="_blank">
+                      chrome://apps
+                  </a>打开刚才添加的项目
+                </p>
+            ]]>
+        </content_html>
+    </tutorial>
+
+    <tutorial id="node-rest-api">
+        <content_html>
+            <![CDATA[
+                <h3>最小化 Node.js API 结构</h3>
+                <p>本教程使用 <strong>Express</strong> 框架，这是搭建 RESTful API 最常用的工具之一。我们专注于路由、中间件和基本的 CRUD 操作。</p>
+                
+                <h4>文件结构:</h4>
+                <pre><code class="language-bash">
+/project
+|-- server.js
+|-- /routes
+|   |-- users.js
+|-- /models
+|   |-- user.js (模拟数据/数据库连接)
+                </code></pre>
+                
+                <h4>示例路由 (<code>routes/users.js</code>):</h4>
+                <p>定义一个获取所有用户的 GET 路由。</p>
+                <pre><code class="language-javascript">
+const express = require('express');
+const router = express.Router();
+
+// GET /api/users
+router.get('/', (req, res) => {
+  // 实际项目中应查询数据库
+  res.json({ users: [{ id: 1, name: 'Alice' }] });
+});
+
+module.exports = router;
+                </code></pre>
+            ]]>
+        </content_html>
+    </tutorial>
+
+    </tutorials>

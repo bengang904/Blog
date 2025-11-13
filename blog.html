@@ -98,6 +98,7 @@
             font-size: 13px;
             line-height: 1.6; 
         }
+        /* 确保行内代码与代码块内的代码样式分离 */
         .content-card :not(pre) > code {
             background: var(--header-bg); 
             padding: 2px 4px;
@@ -143,33 +144,77 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
     <script>
         const contentContainer = document.getElementById('tutorial-content');
+
         function getTutorialId() {
             const params = new URLSearchParams(window.location.search);
             return params.get('id');
         }
+        
+        // 改进的 XML 解析函数：兼容 CDATA 内容中的多行代码和 HTML 结构
+        function getTutorialContentFromXML(xmlDoc, tutorialId) {
+            // 使用 XPath 查找更精确，兼容 RSS item/entry 结构中的 description/content
+            // 假设我们的教程元素是 <tutorial id="xxx">，或者在一个 RSS <item> 或 Atom <entry> 内
+            // 这里我们保持上一步的简单结构，但注意其灵活性
+            const tutorialElement = xmlDoc.querySelector(`tutorial[id="${tutorialId}"]`);
+            if (tutorialElement) {
+                const contentHtmlElement = tutorialElement.querySelector('content_html');
+                if (contentHtmlElement) {
+                    // 使用 textContent 来获取 CDATA 块内的原始文本内容（即 HTML 字符串）
+                    const content = contentHtmlElement.textContent.trim();
+                    
+                    // 替换换行符为 <br> 以在 <pre> 中正确显示多行，
+                    // 但由于 Prism.js 自动处理 <pre>，我们只需要确保代码块 HTML 结构正确。
+                    // **关键：** 原始 HTML 字符串应该已经包含 <pre><code class="language-...">...</code></pre>
+                    return content;
+                }
+            }
+            return null;
+        }
+
         async function loadTutorialContent(id) {
             if (!id) {
                 contentContainer.innerHTML = '<h1>错误</h1><p class="meta">未指定文章 ID。</p>';
                 return;
             }
             try {
+                // 1. 获取 JSON (posts.json) 和 XML (tutorials.xml)
                 const [postsRes, tutorialsRes] = await Promise.all([
                     fetch('posts.json'), 
-                    fetch('tutorials.json') 
+                    fetch('tutorials.xml') // <-- 文件名更改为 tutorials.xml
                 ]);
                 if (!postsRes.ok) throw new Error('Failed to load posts.json');
-                if (!tutorialsRes.ok) throw new Error('Failed to load tutorials.json');
+                if (!tutorialsRes.ok) throw new Error('Failed to load tutorials.xml');
+                
                 const postsDataArray = await postsRes.json();
-                const tutorialsData = await tutorialsRes.json(); 
+                const xmlText = await tutorialsRes.text(); // <-- 获取 XML 文本
+                
+                // 2. 解析 XML
+                const parser = new DOMParser();
+                // 使用 text/xml 解析，如果内容是 RSS/Atom，可能需要 'application/xml'
+                const xmlDoc = parser.parseFromString(xmlText, "text/xml"); 
+                
+                // 检查 XML 解析错误
+                if (xmlDoc.getElementsByTagName('parsererror').length > 0) {
+                    // 这里可以输出更详细的解析错误信息
+                    console.error('XML Parser Error:', xmlDoc.getElementsByTagName('parsererror')[0].textContent);
+                    throw new Error('Failed to parse tutorials.xml (XML structure error)');
+                }
+
+                // 3. 提取数据
                 const postsMap = postsDataArray.reduce((acc, post) => {
                     acc[post.id] = post;
                     return acc;
                 }, {});
+                
                 const postInfo = postsMap[id]; 
-                const tutorialContent = tutorialsData[id]; 
-                if (postInfo && tutorialContent && tutorialContent.content_html) {
+                const tutorialContentHtml = getTutorialContentFromXML(xmlDoc, id); // <-- 从 XML 文档中提取内容
+                
+                // 4. 渲染内容
+                if (postInfo && tutorialContentHtml) {
+                    // 设置 Favicon
                     const faviconLink = document.getElementById('faviconLink');
                     if (faviconLink && postInfo.cover_img) {
                         faviconLink.href = postInfo.cover_img;
@@ -181,13 +226,17 @@
                             faviconLink.type = 'image/x-icon'; 
                         }
                     }
+
+                    // 插入 HTML 内容
                     contentContainer.innerHTML = `
                         <h1>${postInfo.title}</h1>
                         <p class="meta">${postInfo.meta}</p>
                         <hr style="border-color: rgba(255,255,255,0.1); margin-bottom: 20px;">
-                        ${tutorialContent.content_html}
+                        ${tutorialContentHtml}
                     `;
                     document.title = postInfo.title;
+                    
+                    // 关键：高亮代码
                     Prism.highlightAll();
 
                 } else {
@@ -197,7 +246,7 @@
 
             } catch (error) {
                 console.error('加载文章详情失败:', error);
-                contentContainer.innerHTML = '<h1>加载失败</h1><p class="meta">无法连接到数据源。</p>';
+                contentContainer.innerHTML = `<h1>加载失败</h1><p class="meta">无法连接到数据源或解析数据出错: ${error.message}</p>`;
             }
         }
         loadTutorialContent(getTutorialId());
