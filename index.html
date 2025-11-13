@@ -10,7 +10,6 @@
     <meta name="description" content="十月黑雨教程博客 — 分享来自十月黑雨" />
     <title>Blog — 十月黑雨</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-
     <style>
         :root{
             --bg: #0f172a;
@@ -23,13 +22,11 @@
             --logo-gradient: linear-gradient(135deg, #0f766e, #06b6d4);
             --button-gradient: linear-gradient(90deg,#06b6d4,#0ea5a3);
             --input-border: rgba(255,255,255,0.1);
-            
             --radius: 12px;
             --max-w: 1100px;
             color-scheme: dark;
             font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
         }
-
         html[data-theme='light'] {
             --bg: #f8fafc;
             --card: #ffffff;
@@ -44,7 +41,6 @@
             
             color-scheme: light;
         }
-
         *{box-sizing:border-box}
         html,body{
             height:100%;
@@ -52,12 +48,9 @@
             background:var(--bg);
             color:var(--text-color);
         }
-        
         a{color:inherit;text-decoration:none}
         a:hover{color:var(--accent)}
-
         .container{max-width:var(--max-w);margin:32px auto;padding:20px}
-
         header{
             display:flex;
             align-items:center;
@@ -84,11 +77,9 @@
         }
         .site-title{font-weight:700;font-size:18px}
         .site-sub{font-size:12px;color:var(--muted)}
-
         nav{display:flex;gap:12px;align-items:center}
         .nav-link{padding:8px 12px;border-radius:8px;font-size:14px;color:var(--muted)}
         .nav-link:hover{background:var(--glass);color:var(--text-color)}
-
         .top-actions{display:flex;gap:8px;align-items:center}
         .btn{
             background:transparent;
@@ -117,8 +108,6 @@
             place-items: center;
             font-size: 18px;
         }
-        
-        /* 移动端优化样式 (确保响应式) */
         .layout{display:grid;grid-template-columns:1fr 320px;gap:24px;margin-top:26px}
         .hero{
             background:var(--card);
@@ -214,32 +203,25 @@
                     <div class="site-sub">实用教程 · 源码示例 · 快速入门</div>
                 </div>
             </div>
-
             <nav aria-label="主导航">
                 <a class="nav-link" href="index.html">首页</a>
-                <a class="nav-link" href="#">前端</a>
-                <a class="nav-link" href="#">后端</a>
-                <a class="nav-link" href="#">工具</a>
-                <a class="nav-link" href="#">关于</a>
+                <a class="nav-link" href="https://2024-10-24.zip/chat.txt" target="_blank">讨论</a>
+                <a class="nav-link" href="https://2024-10-24.zip/web.pdf" target="_blank">关于更多</a>
             </nav>
-
             <div class="top-actions">
                 <button class="btn" id="themeToggle" aria-label="切换主题模式">
                     <i id="themeIcon" class="ri-moon-line"></i>
                 </button>
             </div>
         </header>
-
         <main class="layout">
             <section>
                 <div class="hero" role="region" aria-label="简介">
                     <h1>欢迎来到教程博客 — 学习、实践、分享</h1>
                     <p>我们发布简洁、实用的教程，从入门到进阶。下面是最新的文章 — 点击任意条目查看完整教程与代码示例。</p>
                 </div>
-
                 <div class="posts" id="posts">
                     </div>
-
                 <div style="margin-top:18px;display:flex;gap:10px;align-items:center;justify-content:space-between">
                     <div style="color:var(--muted);font-size:13px" id="pageInfo"></div>
                     <div style="display:flex;gap:8px">
@@ -248,26 +230,22 @@
                     </div>
                 </div>
             </section>
-
             <aside>
                 <div class="card">
                     <form class="search" onsubmit="return false">
                         <input id="searchInput" placeholder="搜索文章标题或关键词..." aria-label="搜索文章" />
                         <button class="btn" id="clearSearch">清空</button>
                     </form>
-
                     <div style="margin-top:14px">
                         <strong>热门标签</strong>
                         <div class="tags" id="tagList" aria-label="热门标签">
+                            <span class="tag" data-tag="Chrome">Chrome</span>
+                            <span class="tag" data-tag="扩展插件">扩展插件</span>
+                            <span class="tag" data-tag="Android">Android</span>
                             <span class="tag" data-tag="JavaScript">JavaScript</span>
                             <span class="tag" data-tag="Node.js">Node.js</span>
-                            <span class="tag" data-tag="WASM">WASM</span>
-                            <span class="tag" data-tag="Docker">Docker</span>
-                            <span class="tag" data-tag="手工艺">手工艺</span>
-                            <span class="tag" data-tag="面试">面试</span>
                         </div>
                     </div>
-
                     <div style="margin-top:14px">
                         <strong>交流</strong>
                         <p class="meta" style="margin:8px 0">有问题？点击进入我们的交流区。</p>
@@ -276,7 +254,6 @@
                         </button>
                     </div>
                 </div>
-
                 <div style="height:18px"></div>
                 <div class="card" style="margin-top:12px">
                     <strong>关于作者</strong>
@@ -289,14 +266,12 @@
             © 2025 教程博客 · 可自由转载
         </footer>
     </div>
-
     <script>
         const POSTS_PER_PAGE = 4;
         let allPosts = []; 
         let filteredPosts = []; 
         let currentPage = 1;
-        let activeTag = null; // 当前活动的标签
-
+        let activeTag = null; 
         const searchInput = document.getElementById('searchInput');
         const clearBtn = document.getElementById('clearSearch');
         const pageInfo = document.getElementById('pageInfo');
@@ -308,11 +283,7 @@
         const postsContainer = document.getElementById('posts');
         const tagList = document.getElementById('tagList'); 
         const html = document.documentElement;
-
-
-        // --- 主题切换逻辑 ---
         let currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-
         function applyTheme(theme) {
             html.setAttribute('data-theme', theme);
             localStorage.setItem('theme', theme);
@@ -323,39 +294,33 @@
                 themeIcon.className = 'ri-moon-line';
             }
         }
-
         themeToggle.addEventListener('click', () => {
             currentTheme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
             applyTheme(currentTheme);
         });
-        
         applyTheme(currentTheme);
-
-
-        // --- 动态创建文章 DOM 元素 (关键修改在此) ---
         function createPostElement(postData) {
-            // postData.link 现在只包含 ID，我们需要手动构造 URL
-            const articleLink = `blog.html?id=${postData.link}`; 
-
-            const article = document.createElement('article');
-            article.className = 'post';
-            article.dataset.title = postData.data_title;
-            article.innerHTML = `
-                <div class="thumb"><img src="${postData.cover_img}" alt="${postData.alt}"></div>
-                <div>
-                    <div class="meta">${postData.meta}</div>
-                    <h3><a href="${articleLink}">${postData.title}</a></h3>
-                    <p class="excerpt">${postData.excerpt}</p>
-                </div>
-            `;
-            return article;
-        }
-
-        // --- 核心文章显示/分页逻辑 ---
+    const articleLink = `blog.html?id=${postData.id}`; 
+    const article = document.createElement('article');
+    article.className = 'post';
+    article.dataset.title = postData.data_title;
+    article.innerHTML = `
+        <a href="${articleLink}" style="flex-shrink: 0; display: contents;"> 
+            <div class="thumb">
+                <img src="${postData.cover_img}" alt="${postData.alt}">
+            </div>
+        </a>
+        <div>
+            <div class="meta">${postData.meta}</div>
+            <h3><a href="${articleLink}">${postData.title}</a></h3>
+            <p class="excerpt">${postData.excerpt}</p>
+        </div>
+    `;
+    return article;
+}
         function displayPosts() {
             const totalPosts = filteredPosts.length;
             const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
-            
             if (totalPosts === 0) {
                 currentPage = 0;
             } else if (currentPage > totalPages) {
@@ -363,14 +328,9 @@
             } else if (currentPage < 1) {
                 currentPage = 1;
             }
-
             const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
             const endIndex = startIndex + POSTS_PER_PAGE;
-
-            // 清空容器
             postsContainer.innerHTML = '';
-
-            // 渲染当前页面的文章
             if (totalPosts > 0) {
                 for (let i = startIndex; i < endIndex && i < totalPosts; i++) {
                     const postElement = createPostElement(filteredPosts[i]);
@@ -382,43 +342,26 @@
 
             updatePaginationUI(currentPage, totalPages);
         }
-
-        // --- 过滤文章逻辑 (支持搜索词和标签过滤) ---
         function filterPosts(searchTerm, tag) {
             const s = searchTerm ? searchTerm.trim().toLowerCase() : '';
-            
-            // 过滤逻辑
             filteredPosts = allPosts.filter(p => {
                 const titleMatch = !s || p.data_title.toLowerCase().includes(s) || p.excerpt.toLowerCase().includes(s);
-                // 确保文章的 tags 数组存在且包含选定的标签
                 const tagMatch = !tag || (p.tags && p.tags.map(t => t.toLowerCase()).includes(tag.toLowerCase()));
-                
                 return titleMatch && tagMatch;
             });
 
             currentPage = 1;
             displayPosts();
         }
-        
-        // --- 标签点击处理函数 ---
         function handleTagClick(e) {
             if (!e.target.classList.contains('tag')) return;
-
             const selectedTag = e.target.dataset.tag;
-            
-            // 清除搜索框内容，因为标签过滤是独立的
             searchInput.value = '';
-
-            // 切换标签的选中状态
             if (activeTag === selectedTag) {
-                // 如果点击了当前选中的标签，则取消选中
                 activeTag = null;
             } else {
-                // 否则选中新标签
                 activeTag = selectedTag;
             }
-            
-            // 更新标签的 CSS 状态
             document.querySelectorAll('.tag').forEach(tagEl => {
                 if (tagEl.dataset.tag === activeTag) {
                     tagEl.classList.add('active');
@@ -426,13 +369,8 @@
                     tagEl.classList.remove('active');
                 }
             });
-
-            // 执行过滤
             filterPosts('', activeTag);
         }
-
-
-        // --- 分页UI更新逻辑 ---
         function updatePaginationUI(current, total) {
             if (total === 0) {
                 pageInfo.textContent = '暂无文章';
@@ -444,13 +382,10 @@
                 nextPageBtn.disabled = (current >= total);
             }
         }
-
-        // --- 初始化加载函数 ---
         async function loadPosts() {
             try {
                 const response = await fetch('posts.json');
                 if (!response.ok) {
-                    // 尝试加载 posts.json 失败时
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
@@ -463,21 +398,14 @@
                 updatePaginationUI(0, 0); 
             }
         }
-
-
-        // --- 事件监听器 ---
         chatButton.addEventListener('click', () => {
             window.open('https://2024-10-24.zip/chat.txt', '_blank');
         });
-
-        // 搜索框事件处理：清空标签选中状态，并以搜索词过滤
         searchInput.addEventListener('input', e => {
-            activeTag = null; // 清空标签过滤
+            activeTag = null; 
             document.querySelectorAll('.tag').forEach(tagEl => tagEl.classList.remove('active'));
             filterPosts(e.target.value, activeTag);
         });
-        
-        // 清空按钮事件处理：清空搜索框和标签选中状态
         clearBtn.addEventListener('click', e => { 
             e.preventDefault(); 
             searchInput.value = ''; 
@@ -485,17 +413,13 @@
             document.querySelectorAll('.tag').forEach(tagEl => tagEl.classList.remove('active'));
             filterPosts('', null);
         });
-        
-        // 标签容器的点击事件
         tagList.addEventListener('click', handleTagClick);
-        
         prevPageBtn.addEventListener('click', () => {
             if (currentPage > 1) {
                 currentPage--;
                 displayPosts();
             }
         });
-
         nextPageBtn.addEventListener('click', () => {
             const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
             if (currentPage < totalPages) {
@@ -503,10 +427,5 @@
                 displayPosts();
             }
         });
-        
-        // 页面加载时调用
         loadPosts();
-    </script>
-</body>
-
-</html>
+    </script></body></html>

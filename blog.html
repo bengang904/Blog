@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>教程文章详情</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    
-    <!-- 引入 Prism.js CSS (使用 tomorrow dark 主题) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-
+    <link id="faviconLink" rel="icon" type="image/x-icon" href="/favicon.ico"> 
     <style>
         :root{
             --bg: #0f172a;
@@ -47,7 +45,6 @@
 
         .container{max-width:800px;margin:32px auto;padding:20px}
         
-        /* 头部样式复用 */
         header{
             display:flex;
             align-items:center;
@@ -68,18 +65,23 @@
             place-items:center;
             font-size:22px
         }
+        .logo img{ 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            border-radius: 10px; 
+        }
         .logo svg{
             width: 60%;
             height: 60%;
             fill: #fff;
         }
+        
         .site-title{font-weight:700;font-size:18px}
         .site-sub{font-size:12px;color:var(--muted)}
         .back-link{color:var(--muted);font-size:14px;display:flex;align-items:center;gap:4px}
         .back-link:hover{color:var(--text-color)}
         .meta{font-size:14px;color:var(--muted);margin-bottom:10px;}
-
-        /* 文章内容样式 */
         .content-card{
             background:var(--card);
             border: 1px solid rgba(255,255,255,0.1);
@@ -90,19 +92,14 @@
         .content-card h1{margin-top:0;font-size:28px;}
         .content-card h3{color:var(--accent);margin-top:25px;}
         .content-card p, .content-card li {line-height:1.6;color:var(--text-color);}
-        
-        /* 1. 多行代码块（pre/code）样式调整：让 Prism 接管背景和颜色 */
         .content-card pre, .content-card code {
-            /* 移除背景/颜色，让 Prism.css 负责高亮样式 */
             border-radius: 6px;
             overflow-x: auto;
             font-size: 13px;
-            line-height: 1.6; /* 保持行高修复 */
+            line-height: 1.6; 
         }
-
-        /* 2. 确保行内代码（:not(pre) > code）保持主题内联样式 */
         .content-card :not(pre) > code {
-            background: var(--header-bg); /* 使用深色背景作为内联代码背景 */
+            background: var(--header-bg); 
             padding: 2px 4px;
             border-radius: 4px;
             font-family: monospace;
@@ -132,65 +129,69 @@
                     <div class="site-sub">实用教程 · 源码示例 · 快速入门</div>
                 </div>
             </div>
-            
             <a href="index.html" class="back-link"><i class="ri-arrow-left-line"></i> 返回首页</a>
         </header>
-
         <main id="tutorial-content" class="content-card">
             <h1>文章加载中...</h1>
         </main>
-
         <footer>
             </footer>
     </div>
-
-    <!-- 引入 Prism.js JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <!-- 引入常用语言组件 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-clike.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
-
     <script>
         const contentContainer = document.getElementById('tutorial-content');
-
-        // 1. 获取 URL 中的 ID 参数
         function getTutorialId() {
             const params = new URLSearchParams(window.location.search);
             return params.get('id');
         }
-
-        // 2. 从 tutorials.json 加载并显示内容
         async function loadTutorialContent(id) {
             if (!id) {
                 contentContainer.innerHTML = '<h1>错误</h1><p class="meta">未指定文章 ID。</p>';
                 return;
             }
-
             try {
-                // 假设 tutorials.json 包含文章的详细内容
-                const response = await fetch('tutorials.json'); 
-                if (!response.ok) throw new Error('Failed to load tutorials.json');
-                
-                const data = await response.json();
-                const tutorial = data[id];
-
-                if (tutorial) {
+                const [postsRes, tutorialsRes] = await Promise.all([
+                    fetch('posts.json'), 
+                    fetch('tutorials.json') 
+                ]);
+                if (!postsRes.ok) throw new Error('Failed to load posts.json');
+                if (!tutorialsRes.ok) throw new Error('Failed to load tutorials.json');
+                const postsDataArray = await postsRes.json();
+                const tutorialsData = await tutorialsRes.json(); 
+                const postsMap = postsDataArray.reduce((acc, post) => {
+                    acc[post.id] = post;
+                    return acc;
+                }, {});
+                const postInfo = postsMap[id]; 
+                const tutorialContent = tutorialsData[id]; 
+                if (postInfo && tutorialContent && tutorialContent.content_html) {
+                    const faviconLink = document.getElementById('faviconLink');
+                    if (faviconLink && postInfo.cover_img) {
+                        faviconLink.href = postInfo.cover_img;
+                        if (postInfo.cover_img.endsWith('.png')) {
+                            faviconLink.type = 'image/png';
+                        } else if (postInfo.cover_img.endsWith('.jpg') || postInfo.cover_img.endsWith('.jpeg')) {
+                            faviconLink.type = 'image/jpeg';
+                        } else {
+                            faviconLink.type = 'image/x-icon'; 
+                        }
+                    }
                     contentContainer.innerHTML = `
-                        <h1>${tutorial.title}</h1>
-                        <p class="meta">${tutorial.meta}</p>
+                        <h1>${postInfo.title}</h1>
+                        <p class="meta">${postInfo.meta}</p>
                         <hr style="border-color: rgba(255,255,255,0.1); margin-bottom: 20px;">
-                        ${tutorial.content_html}
+                        ${tutorialContent.content_html}
                     `;
-                    document.title = tutorial.title;
-                    
-                    // 3. 调用 Prism 渲染高亮
+                    document.title = postInfo.title;
                     Prism.highlightAll();
 
                 } else {
-                    contentContainer.innerHTML = '<h1>未找到文章</h1><p class="meta">指定 ID 的文章不存在。</p>';
+                    contentContainer.innerHTML = '<h1>未找到文章</h1><p class="meta">指定 ID 的文章信息或详细内容不存在。</p>';
                     document.title = '404 - 未找到';
                 }
 
@@ -199,12 +200,9 @@
                 contentContainer.innerHTML = '<h1>加载失败</h1><p class="meta">无法连接到数据源。</p>';
             }
         }
-
         loadTutorialContent(getTutorialId());
-
-        // 可选：实现主题同步
         const html = document.documentElement;
-        let savedTheme = localStorage.getItem('theme') || 'dark'; // 假设默认是 dark
+        let savedTheme = localStorage.getItem('theme') || 'dark'; 
         html.setAttribute('data-theme', savedTheme);
     </script>
 </body>

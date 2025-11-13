@@ -1,32 +1,8 @@
 {
-  "drag-upload-js": {
-    "title": "如何用原生 JavaScript 实现拖放上传（含进度条）",
-    "meta": "前端 · 2025-10-30",
+  "chrome-apk": {
     "content_html": "<p>本教程将指导你使用原生的 **JavaScript** 和 **Fetch API** 实现一个功能完善的拖放文件上传组件。</p><h3>1. HTML 结构</h3><p>首先，我们需要一个放置拖放区域的容器。</p><pre><code>&lt;div id=\"dropzone\"&gt;拖放文件到此处&lt;/div&gt;&lt;progress id=\"progressBar\" value=\"0\" max=\"100\"&gt;&lt;/progress&gt;</code></pre><h3>2. JavaScript 核心：事件与数据</h3><p>阻止默认行为，监听 `dragover`、`dragleave` 和 `drop` 事件。</p><pre><code>const dropzone = document.getElementById('dropzone');\ndropzone.addEventListener('drop', handleDrop);\ndropzone.addEventListener('dragover', e => e.preventDefault());\n\nfunction handleDrop(e) {\n  e.preventDefault();\n  const files = e.dataTransfer.files;\n  if (files.length > 0) {\n    uploadFiles(files);\n  }\n}</code></pre><h3>3. 上传与进度条</h3><p>使用 **XMLHttpRequest**（而非 Fetch API，因为 XHR 更容易监控上传进度）和 **FormData** 上传文件并更新进度条。</p>"
   },
   "node-rest-api": {
-    "title": "在 Node.js 上快速搭建一个小型 REST API",
-    "meta": "后端 · 2025-09-12",
     "content_html": "<h3>最小化 Node.js API 结构</h3><p>本教程使用 **Express** 框架，这是搭建 RESTful API 最常用的工具之一。我们专注于路由、中间件和基本的 CRUD 操作。</p><h4>文件结构:</h4><pre><code>/project\n|-- server.js\n|-- /routes\n|   |-- users.js\n|-- /models\n|   |-- user.js (模拟数据/数据库连接)</code></pre><h4>示例路由 (`routes/users.js`):</h4><p>定义一个获取所有用户的 GET 路由。</p><pre><code>const express = require('express');\nconst router = express.Router();\n\n// GET /api/users\nrouter.get('/', (req, res) => {\n  // 实际项目中应查询数据库\n  res.json({ users: [{ id: 1, name: 'Alice' }] });\n});\n\nmodule.exports = router;</code></pre>"
-  },
-  "wasm-gaming": {
-    "title": "把老游戏移植到浏览器：WASM 与资源加载最佳实践",
-    "meta": "进阶 · 2025-08-01",
-    "content_html": "<h3>理解 WebAssembly (WASM)</h3><p>**WebAssembly** (WASM) 是一种低级虚拟机，允许你在浏览器中以接近原生的性能运行 C, C++, Rust 等语言编写的代码。要运行一个老游戏模拟器，你需要：</p><ul><li>将模拟器的核心代码编译为 `.wasm` 文件。</li><li>使用 JavaScript 加载并初始化 WASM 模块。</li></ul><h4>内存管理与 Table 越界</h4><p>WASM 无法直接访问浏览器的 DOM 或 JavaScript 对象。所有数据交换都通过一个共享的 **Linear Memory** 缓冲区进行。常见的错误包括：</p><ul><li>**内存越界 (Out-of-Bounds Memory Access)**：WASM 访问了分配范围之外的内存地址。</li><li>**Table 越界**：WASM 调用函数指针时，访问了函数表之外的索引。</li></ul><p>解决这些问题的关键是正确配置编译器的内存限制和函数导入/导出。</p>"
-  },
-  "diy-plush-pattern": {
-    "title": "开源毛绒玩偶裁片图纸与缝制教程（含可打印 SVG）",
-    "meta": "手工 · 2025-07-18",
-    "content_html": "<h3>玩偶设计到成品</h3><p>这是一个从零开始创建可打印毛绒玩偶图纸的教程。</p><h4>1. 数字化图纸 (SVG)</h4><p>使用 **Inkscape** 或 **Adobe Illustrator** 等矢量图形软件创建玩偶的各个裁片。我们使用 **SVG** 格式，因为它具有无限缩放和精确测量的特性，非常适合打印。</p><h4>2. 缝制技巧：弧度与对齐</h4><p>缝合毛绒布料的关键在于保持均匀的缝边并精确对齐标记点。对于头部或身体等弧形结构，使用大头针均匀固定，并在转弯处进行适当剪牙口处理，能确保填充后表面光滑。</p><h4>3. 填充与闭合</h4><p>建议使用优质的 **PP棉** 填充，并使用 **梯形缝**（隐藏缝）来闭合最后的开口，使玩偶外观更加完美。</p>"
-  },
-  "test-post-5": {
-    "title": "这是第五篇测试文章，用来演示分页效果。",
-    "meta": "测试 · 2025-07-01",
-    "content_html": "<p>这篇是用来测试分页功能的文章，点击这个链接，你应该能看到这篇文章的独立内容页面。所有的详细内容都通过 `tutorials.json` 加载，确保了数据的完全分离。</p>"
-  },
-  "test-post-6": {
-    "title": "第六篇文章：确保进入第三页",
-    "meta": "测试 · 2025-06-25",
-    "content_html": "<p>这是我们的第六篇测试文章。在主页（每页显示 4 篇）上，它应该出现在第二页。现在你正在阅读它的详情页。通过 URL 中的 ID，我们成功加载了这段详细内容。</p>"
   }
 }
