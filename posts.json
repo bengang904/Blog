@@ -8,15 +8,5 @@
     "cover_img": "images/chrome-apk.jpg",
     "alt": "JS 教程封面",
     "tags": ["Chrome", "扩展插件", "Android"] 
-  },
-  {
-    "id": "node-rest-api",
-    "title": "在 Node.js 上快速搭建一个小型 REST API",
-    "data_title": "在Node上搭建小型API服务",
-    "meta": "后端 · 2024-09-12",
-    "excerpt": "包含路由、验证与单元测试的最小项目结构，适合入门与逐步扩展。",
-    "cover_img": "cover2.jpg",
-    "alt": "API 封面",
-    "tags": ["Node.js", "后端", "API"]
   }
 ]
