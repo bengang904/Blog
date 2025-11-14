@@ -5,8 +5,8 @@
     "data_title": "如何在 chrome 浏览器中运行 Android apk 应用软件 扩展插件",
     "meta": "扩展插件 · 2025-11-13",
     "excerpt": "在 Chrome80 版本演示运行，依赖于 ARChon Runtime for Chrome 第三方扩展。",
-    "cover_img": "images/chrome-apk.jpg",
-    "alt": "JS 教程封面",
+    "cover_img": "logo/chrome-apk.jpg",
+    "alt": "封面",
     "tags": ["Chrome", "扩展插件", "Android"] 
   }
 ]
