@@ -60,12 +60,8 @@
         <p>在计算机安装 Node.js 后，打开自带的 Powershell 终端，并粘贴以下命令进行安装：</p>
         <pre><code class="language-javascript">npm install -g @gltf-transform/cli</code></pre>
         <h3>使用 glTF-Pipeline 命令</h3>
-        <p>自动：综合清理，优化模型结构，提高加载效率，不一定压缩体积</p>
-        <pre><code class="language-javascript">gltf-transform optimize in.glb out.glb</code></pre>
-        <p>Draco 网格压缩：压缩 Mesh 顶点数据，有损压缩</p>
+        <p>Draco 网格压缩：压缩 Mesh 顶点数据</p>
         <pre><code class="language-javascript">gltf-transform draco in.glb out.glb</code></pre>
-        <p>Meshopt 网格优化压缩：meshopt</p>
-        <pre><code class="language-javascript">gltf-transform meshopt in.glb out.glb</code></pre>
       
       ]]></description>
     </item>
