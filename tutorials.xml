@@ -7,10 +7,9 @@
     <language>zh-CN</language>
     <lastBuildDate>Thu, 13 Nov 2025 14:00:00 +0800</lastBuildDate>
 
-    <!-- 第一篇教程 -->
     <item>
       <title>Chrome APK 运行环境 — ARChon 安装教程</title>
-      <link>https://blog.2024-10-24.zip/tutorials/chrome-apk</link>
+      <link>https://blog.2024-10-24.zip/blog.html?id=chrome-apk</link>
       <guid isPermaLink="false">chrome-apk</guid>
       <pubDate>Thu, 13 Nov 2025 14:00:00 +0800</pubDate>
       <description><![CDATA[
@@ -52,6 +51,28 @@
       ]]></description>
     </item>
 
+    <item>
+      <title>如何利用 gltf-pipeline 压缩 GLB</title>
+      <link>https://blog.2024-10-24.zip/blog.html?id=gltf-pipeline</link>
+      <guid isPermaLink="false">gltf-pipeline</guid>
+      <pubDate>Mon, 08 Dec 2025 16:18:00 +0800</pubDate>
+      <description><![CDATA[
+        <p>在计算机安装 Node.js 后，打开自带的 Powershell 终端，并粘贴以下命令进行安装：</p>
+        <pre><code class="language-javascript">npm install -g gltf-pipeline</code></pre>
+        <h3>使用 glTF-Pipeline 命令</h3>
+        <p>打包：glTF ➝ glb</p>
+        <pre><code class="language-javascript">gltf-pipeline -i model.gltf -o model.glb</code></pre>
+        <p>解包：glb ➝ glTF</p>
+        <pre><code class="language-javascript">gltf-pipeline -i model.glb -o model.gltf</code></pre>
+        <p>启用 Draco 压缩：大幅减少文件大小</p>
+        <pre><code class="language-javascript">gltf-pipeline -i model.gltf -o model_drc.glb --draco.compressMeshes</code></pre>
+        <p>保留未使用元素：避免 Three.js/Blender 识别不到</p>
+        <pre><code class="language-javascript">gltf-pipeline -i model.gltf -o model_opt.glb --keepUnusedElements</code></pre>
+        <p>优化 glTF：自动去除冗余</p>
+        <pre><code class="language-javascript">gltf-pipeline -i model.gltf -o model_opt.gltf --combineNodes --combineTextures</code></pre>
+        
+      ]]></description>
+    </item>
 
   </channel>
 </rss>
