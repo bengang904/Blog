@@ -10,15 +10,16 @@
     "tags": ["Chrome", "扩展插件", "Android"] 
   },
   {
-    "id": "gltf-pipeline",
-    "title": "如何利用 gltf-pipeline 压缩 GLB",
-    "data_title": "如何利用 gltf-pipeline 压缩 GLB 3D 模型文件",
+    "id": "glTF-Transform",
+    "title": "如何利用 glTF-Transform 压缩 GLB",
+    "data_title": "如何利用 glTF-Transform 压缩 GLB 3D 模型文件",
     "meta": "3D模型压缩 · 2025-12-08",
-    "excerpt": "通过 glTF Pipeline，对 3D 模型 GLB 文件进行压缩",
-    "cover_img": "logo/gltf-pipeline.png",
+    "excerpt": "通过 glTF-Transform，对 3D 模型 GLB 文件进行压缩",
+    "cover_img": "logo/glTF-Transform.jpg",
     "alt": "封面",
     "tags": ["GLB", "文件压缩", "3D模型"] 
   }
 
 ]
+
 
