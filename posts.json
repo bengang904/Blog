@@ -18,8 +18,19 @@
     "cover_img": "logo/glTF-Transform.jpg",
     "alt": "封面",
     "tags": ["GLB", "文件压缩", "3D模型"] 
-  }
+  },
+  {
+  "id": "ImageMagick-Steganography",
+  "title": "如何利用 ImageMagick 进行图片隐写",
+  "data_title": "如何利用 ImageMagick 在 PNG 图片中隐藏文件",
+  "meta": "信息隐藏 · 2026-02-19",
+  "excerpt": "通过 ImageMagick 的 -stegano 参数，在 PNG 图片中隐藏文本或文件数据，并实现提取。",
+  "cover_img": "logo/ImageMagick.jpg",
+  "alt": "封面",
+  "tags": ["ImageMagick", "隐写", "信息安全", "PNG"]
+}
 
 ]
+
 
 
