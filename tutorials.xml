@@ -66,5 +66,42 @@
       ]]></description>
     </item>
 
+    <item>
+  <title>如何利用 ImageMagick 在 PNG 中隐写 TXT 文件</title>
+  <link>https://blog.2024-10-24.zip/blog.html?id=ImageMagick-Steganography</link>
+  <guid isPermaLink="false">ImageMagick-Steganography</guid>
+  <pubDate>Wed, 19 Feb 2026 09:30:00 +0800</pubDate>
+  <description><![CDATA[
+     <p>首先需要下载 ImageMagick，下载链接 
+            <a href="https://imagemagick.org/script/download.php" target="_blank" download>
+                https://imagemagick.org/script/download.php
+            </a>
+        </p>
+    <p>安装好 <strong>ImageMagick</strong> 后，打开系统自带的终端，确保输入以下命令可以查看版本号：</p>
+    <pre><code class="language-bash">magick -version</code></pre>
+    <h3>准备文件</h3>
+    <p>准备以下两个文件：</p>
+    <ul>
+      <li>cover.png（用于隐藏数据的载体图片，建议使用 PNG 无损格式）</li>
+      <li>secret.txt（需要隐藏的文本文件）</li>
+    </ul>
+    <h3>执行隐写命令</h3>
+    <p>使用 <strong>-stegano</strong> 参数将文本文件隐藏到图片中：</p>
+    <pre><code class="language-bash">magick cover.png secret.txt -stegano 0 output.png</code></pre>
+    <p>执行完成后，生成的 <strong>output.png</strong> 即为包含隐藏信息的图片。</p>
+    <h3>提取隐藏的 TXT 文件</h3>
+    <p>如果需要恢复隐藏的数据，可以执行：</p>
+    <pre><code class="language-bash">magick output.png -stegano 0 extracted.txt</code></pre>
+    <p>执行完成后，extracted.txt 即为原始隐藏文件。</p>
+    <h3>注意事项</h3>
+    <ul>
+      <li>建议使用 PNG 格式，避免使用 JPG（有损压缩会破坏隐藏数据）。</li>
+      <li>图片尺寸越大，可隐藏的数据容量越多。</li>
+      <li>隐写不等于加密，如需安全性，请先对文本进行加密再进行隐写。</li>
+    </ul>
+  ]]></description>
+</item>
+
+
   </channel>
 </rss>
