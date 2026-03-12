@@ -28,9 +28,20 @@
   "cover_img": "logo/ImageMagick.jpg",
   "alt": "封面",
   "tags": ["ImageMagick", "隐写", "信息安全", "PNG"]
+},
+{
+  "id": "F5-TTS",
+  "title": "本地部署 F5-TTS 进行语音克隆",
+  "data_title": "本地部署 F5-TTS 进行语音克隆",
+  "meta": "语音克隆 · 2026-03-12",
+  "excerpt": "通过 Python 本地部署在 127.0.0.1 打开",
+  "cover_img": "logo/F5-TTS.jpg",
+  "alt": "封面",
+  "tags": ["F5-TTS", "语音", "克隆", "web"]
 }
 
 ]
+
 
 
 
