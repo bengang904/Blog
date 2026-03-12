@@ -7,6 +7,85 @@
     <language>zh-CN</language>
     <lastBuildDate>Thu, 13 Nov 2025 14:00:00 +0800</lastBuildDate>
 
+     <item>
+      <title>本地部署 F5-TTS 进行语音克隆</title>
+      <link>https://blog.2024-10-24.zip/blog.html?id=F5-TTS</link>
+      <guid isPermaLink="false">F5-TTS</guid>
+      <pubDate>Thu, 12 Mar 2026 16:18:00 +0800</pubDate>
+      <description><![CDATA[
+        <p>Python 版本推荐使用 python 3.10 或 3.11，在系统终端确认：</p>
+        <pre><code class="language-javascript">python --version</code></pre>
+        <p>笔者的版本为 python 3.10.11</p>
+        <h3>项目下载</h3>
+        <p>安装 git，下载 GitHub 项目到本地：</p>
+        <pre><code class="language-javascript">git clone https://github.com/SWivid/F5-TTS.git</code></pre>
+        <pre><code class="language-javascript">cd F5-TTS</code></pre>
+        <h3>安装项目依赖</h3>
+        <pre><code class="language-javascript">pip install -r requirements.txt</code></pre>
+        <h3>下载模型</h3>
+        <pre><code class="language-javascript">python download_models.py</code></pre>
+        <p>或者手动下载，模型来自 Hugging Face：</p>
+        <a href="https://huggingface.co/SWivid/F5-TTS" target="_blank">https://huggingface.co/SWivid/F5-TTS</a>
+        <p>在项目文件夹手动创建 /ckpts/F5TTS_Base/，把下载的 model_1200000.safetensors 与 vocab.txt 放进去</p>
+        <h3>启动 Web UI</h3>
+        <pre><code class="language-javascript">python app.py</code></pre>
+        <p>启动成功会出现，并浏览器打开：</p>
+        <pre><code class="language-javascript">http://127.0.0.1:7860</code></pre>
+        <img src="images/2026-03-12-1.jpg" alt="教程运行效果图" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+      ]]></description>
+    </item>
+    
+    <item>
+      <title>如何利用 ImageMagick 在 PNG 中隐写 TXT 文件</title>
+      <link>https://blog.2024-10-24.zip/blog.html?id=ImageMagick-Steganography</link>
+      <guid isPermaLink="false">ImageMagick-Steganography</guid>
+      <pubDate>Wed, 19 Feb 2026 09:30:00 +0800</pubDate>
+      <description><![CDATA[
+         <p>首先需要下载 ImageMagick，下载链接 
+                <a href="https://imagemagick.org/script/download.php" target="_blank" download>
+                    https://imagemagick.org/script/download.php
+                </a>
+            </p>
+        <p>安装好 <strong>ImageMagick</strong> 后，打开系统自带的终端，确保输入以下命令可以查看版本号：</p>
+        <pre><code class="language-bash">magick -version</code></pre>
+        <h3>准备文件</h3>
+        <p>准备以下两个文件：</p>
+        <ul>
+          <li>cover.png（用于隐藏数据的载体图片，建议使用 PNG 无损格式）</li>
+          <li>secret.txt（需要隐藏的文本文件）</li>
+        </ul>
+        <h3>执行隐写命令</h3>
+        <p>使用 <strong>-stegano</strong> 参数将文本文件隐藏到图片中：</p>
+        <pre><code class="language-bash">magick cover.png secret.txt -stegano 0 output.png</code></pre>
+        <p>执行完成后，生成的 <strong>output.png</strong> 即为包含隐藏信息的图片。</p>
+        <h3>提取隐藏的 TXT 文件</h3>
+        <p>如果需要恢复隐藏的数据，可以执行：</p>
+        <pre><code class="language-bash">magick output.png -stegano 0 extracted.txt</code></pre>
+        <p>执行完成后，extracted.txt 即为原始隐藏文件。</p>
+        <h3>注意事项</h3>
+        <ul>
+          <li>建议使用 PNG 格式，避免使用 JPG（有损压缩会破坏隐藏数据）。</li>
+          <li>图片尺寸越大，可隐藏的数据容量越多。</li>
+          <li>隐写不等于加密，如需安全性，请先对文本进行加密再进行隐写。</li>
+        </ul>
+      ]]></description>
+    </item>
+
+      <item>
+      <title>如何利用 glTF-Transform 压缩 GLB</title>
+      <link>https://blog.2024-10-24.zip/blog.html?id=glTF-Transform</link>
+      <guid isPermaLink="false">glTF-Transform</guid>
+      <pubDate>Mon, 08 Dec 2025 16:18:00 +0800</pubDate>
+      <description><![CDATA[
+        <p>在计算机安装 Node.js 后，打开自带的 Powershell 终端，并粘贴以下命令进行安装：</p>
+        <pre><code class="language-javascript">npm install -g @gltf-transform/cli</code></pre>
+        <h3>使用 glTF-Pipeline 命令</h3>
+        <p>Draco 网格压缩：压缩 Mesh 顶点数据</p>
+        <pre><code class="language-javascript">gltf-transform draco in.glb out.glb</code></pre>
+      
+      ]]></description>
+    </item>
+    
     <item>
       <title>Chrome APK 运行环境 — ARChon 安装教程</title>
       <link>https://blog.2024-10-24.zip/blog.html?id=chrome-apk</link>
@@ -50,58 +129,6 @@
         <img src="images/2025-11-13-1.jpg" alt="教程运行效果图" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
       ]]></description>
     </item>
-
-    <item>
-      <title>如何利用 glTF-Transform 压缩 GLB</title>
-      <link>https://blog.2024-10-24.zip/blog.html?id=glTF-Transform</link>
-      <guid isPermaLink="false">glTF-Transform</guid>
-      <pubDate>Mon, 08 Dec 2025 16:18:00 +0800</pubDate>
-      <description><![CDATA[
-        <p>在计算机安装 Node.js 后，打开自带的 Powershell 终端，并粘贴以下命令进行安装：</p>
-        <pre><code class="language-javascript">npm install -g @gltf-transform/cli</code></pre>
-        <h3>使用 glTF-Pipeline 命令</h3>
-        <p>Draco 网格压缩：压缩 Mesh 顶点数据</p>
-        <pre><code class="language-javascript">gltf-transform draco in.glb out.glb</code></pre>
-      
-      ]]></description>
-    </item>
-
-    <item>
-  <title>如何利用 ImageMagick 在 PNG 中隐写 TXT 文件</title>
-  <link>https://blog.2024-10-24.zip/blog.html?id=ImageMagick-Steganography</link>
-  <guid isPermaLink="false">ImageMagick-Steganography</guid>
-  <pubDate>Wed, 19 Feb 2026 09:30:00 +0800</pubDate>
-  <description><![CDATA[
-     <p>首先需要下载 ImageMagick，下载链接 
-            <a href="https://imagemagick.org/script/download.php" target="_blank" download>
-                https://imagemagick.org/script/download.php
-            </a>
-        </p>
-    <p>安装好 <strong>ImageMagick</strong> 后，打开系统自带的终端，确保输入以下命令可以查看版本号：</p>
-    <pre><code class="language-bash">magick -version</code></pre>
-    <h3>准备文件</h3>
-    <p>准备以下两个文件：</p>
-    <ul>
-      <li>cover.png（用于隐藏数据的载体图片，建议使用 PNG 无损格式）</li>
-      <li>secret.txt（需要隐藏的文本文件）</li>
-    </ul>
-    <h3>执行隐写命令</h3>
-    <p>使用 <strong>-stegano</strong> 参数将文本文件隐藏到图片中：</p>
-    <pre><code class="language-bash">magick cover.png secret.txt -stegano 0 output.png</code></pre>
-    <p>执行完成后，生成的 <strong>output.png</strong> 即为包含隐藏信息的图片。</p>
-    <h3>提取隐藏的 TXT 文件</h3>
-    <p>如果需要恢复隐藏的数据，可以执行：</p>
-    <pre><code class="language-bash">magick output.png -stegano 0 extracted.txt</code></pre>
-    <p>执行完成后，extracted.txt 即为原始隐藏文件。</p>
-    <h3>注意事项</h3>
-    <ul>
-      <li>建议使用 PNG 格式，避免使用 JPG（有损压缩会破坏隐藏数据）。</li>
-      <li>图片尺寸越大，可隐藏的数据容量越多。</li>
-      <li>隐写不等于加密，如需安全性，请先对文本进行加密再进行隐写。</li>
-    </ul>
-  ]]></description>
-</item>
-
 
   </channel>
 </rss>
