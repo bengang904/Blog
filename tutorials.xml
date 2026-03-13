@@ -26,7 +26,7 @@
         <pre><code class="language-javascript">cd [下载文件夹]</code></pre>
         <pre><code class="language-javascript">yt-dlp [视频网址]</code></pre>
         <h3>示例</h3>
-        <p>例如：需要下载 YouTube 的视频到系统到下载文件夹</p>
+        <p>例如：需要下载 YouTube 的视频到系统的下载文件夹</p>
         <pre><code class="language-javascript">cd Downloads</code></pre>
         <pre><code class="language-javascript">yt-dlp https://www.youtube.com/watch?v=[参数]</code></pre>
       ]]></description>
