@@ -8,6 +8,31 @@
     <lastBuildDate>Thu, 13 Nov 2025 14:00:00 +0800</lastBuildDate>
 
      <item>
+      <title>使用 yt-dlp 进行下载视频</title>
+      <link>https://blog.2024-10-24.zip/blog.html?id=yt-dlp</link>
+      <guid isPermaLink="false">yt-dlp</guid>
+      <pubDate>Thu, 13 Mar 2026 13:54:00 +0800</pubDate>
+      <description><![CDATA[
+        <h3>项目下载</h3>
+        <p>进入 GitHub Releases 发布页下载 yt-dlp</p>
+        <a href="https://github.com/yt-dlp/yt-dlp/releases" target="_blank">https://github.com/yt-dlp/yt-dlp/releases</a>
+        <p>以 Windows 系统为例，找到并下载：</p>
+        <pre><code class="language-javascript">yt-dlp.exe</code></pre>
+        <h3>系统配置</h3>
+        <p>新建文件夹，把应用程序放置其中</p>
+        <p>打开系统设置，编辑系统环境变量，将其地址添加到 Path</p>
+        <h3>运行</h3>
+        <p>打开系统终端，运行 yt-dlp</p>
+        <pre><code class="language-javascript">cd [下载文件夹]</code></pre>
+        <pre><code class="language-javascript">yt-dlp [视频网址]</code></pre>
+        <h3>示例</h3>
+        <p>例如：需要下载 YouTube 的视频到系统到下载文件夹</p>
+        <pre><code class="language-javascript">cd Downloads</code></pre>
+        <pre><code class="language-javascript">yt-dlp https://www.youtube.com/watch?v=[参数]</code></pre>
+      ]]></description>
+    </item>
+
+     <item>
       <title>本地部署 F5-TTS 进行语音克隆</title>
       <link>https://blog.2024-10-24.zip/blog.html?id=F5-TTS</link>
       <guid isPermaLink="false">F5-TTS</guid>
