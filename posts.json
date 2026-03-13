@@ -1,4 +1,14 @@
 [
+   {
+  "id": "yt-dlp",
+  "title": "使用 yt-dlp 进行下载视频",
+  "data_title": "使用 yt-dlp 进行下载视频",
+  "meta": "下载视频 · 2026-03-12",
+  "excerpt": "使用 yt-dlp 进行下载 YouTube 视频",
+  "cover_img": "logo/yt-dlp.png",
+  "alt": "封面",
+  "tags": ["yt-dlp", "下载", "视频", "YouTube"]
+},
   {
   "id": "F5-TTS",
   "title": "本地部署 F5-TTS 进行语音克隆",
@@ -41,6 +51,7 @@
   }
 
 ]
+
 
 
 
