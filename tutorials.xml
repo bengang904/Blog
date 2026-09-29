@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>教程合集</title>
+    <link>https://blog.2024-10-24.zip</link>
+    <description>收录技术教程与工具指南</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 29 Sep 2026 16:30:00 +0800</lastBuildDate>
+
+    <item>
+      <title>快速大文件切片</title>
+      <link>https://blog.2024-10-24.zip/blog.html?id=file-part</link>
+      <guid isPermaLink="false">git</guid>
+      <pubDate>Tue, 29 Sep 2026 16:30:00 +0800</pubDate>
+      <description><![CDATA[
+        <p>在项目根目录新建一个名为 part 的文件夹</p>
+        <p>以 10 MB 大小为分割为例</p>
+        <h3>在 cmd 终端的项目根目录，输入以下命令：</h3>
+        <pre><code class="language-javascript">powershell -NoProfile -Command "$f=[IO.File]::OpenRead('【待切片的文件相对路径】');$b=New-Object byte[](10MB);$i=1;while(($n=$f.Read($b,0,$b.Length))-gt 0){$o=[IO.File]::Create(('./part/【切片文件的名称】.part'+$i));$o.Write($b,0,$n);$o.Close();$i++};$f.Close()"</code></pre>
+      ]]></description>
+      <data_title>快速大文件切片</data_title>
+      <meta>快速大文件切片 · 2026-09-29</meta>
+      <excerpt>使用终端快速大文件切片</excerpt>
+      <cover_img>logo/file-part.jpg</cover_img>
+      <tags>
+        <tag>file</tag>
+        <tag>文件</tag>
+        <tag>切片</tag>
+      </tags>
+    </item>
+
+    <item>
+      <title>git 推送到 Github 仓库</title>
+      <link>https://blog.2024-10-24.zip/blog.html?id=git</link>
+      <guid isPermaLink="false">git</guid>
+      <pubDate>Tue, 29 Sep 2026 16:00:00 +0800</pubDate>
+      <description><![CDATA[
+        <h3>打开终端输入以下命令：</h3>
+        <p>验证本地 git 是否已经安装：</p>
+        <pre><code class="language-javascript">git --version</code></pre>
+        <p>推送到 GitHub </p>
+        <pre><code class="language-javascript">git init
+git branch -M main
+git remote remove origin 2>nul
+git remote add origin 【你的仓库地址】
+git add -A
+git commit -m "Update"
+git push -u origin main --force</code></pre>
+      ]]></description>
+      <data_title>git 推送 </data_title>
+      <meta>git 推送 · 2026-09-29</meta>
+      <excerpt>推送 git 到仓库</excerpt>
+      <cover_img>logo/git.png</cover_img>
+      <tags>
+        <tag>git</tag>
+        <tag>github</tag>
+        <tag>仓库</tag>
+      </tags>
+    </item>
+    <item>
+      <title>使用 yt-dlp 进行下载视频</title>
+      <link>https://blog.2024-10-24.zip/blog.html?id=yt-dlp</link>
+      <guid isPermaLink="false">yt-dlp</guid>
+      <pubDate>Thu, 13 Mar 2026 13:54:00 +0800</pubDate>
+      <description><![CDATA[
+        <h3>项目下载</h3>
+        <p>进入 GitHub Releases 发布页下载 yt-dlp</p>
+        <a href="https://github.com/yt-dlp/yt-dlp/releases" target="_blank">https://github.com/yt-dlp/yt-dlp/releases</a>
+        <p>以 Windows 系统为例，找到并下载：</p>
+        <pre><code class="language-javascript">yt-dlp.exe</code></pre>
+        <h3>系统配置</h3>
+        <p>新建文件夹，把应用程序放置其中</p>
+        <p>打开系统设置，编辑系统环境变量，将其地址添加到 Path</p>
+        <h3>运行</h3>
+        <p>打开系统终端，运行 yt-dlp</p>
+        <pre><code class="language-javascript">cd [下载文件夹]</code></pre>
+        <pre><code class="language-javascript">yt-dlp [视频网址]</code></pre>
+        <h3>示例</h3>
+        <p>例如：需要下载 YouTube 的视频到系统的下载文件夹</p>
+        <pre><code class="language-javascript">cd Downloads</code></pre>
+        <pre><code class="language-javascript">yt-dlp https://www.youtube.com/watch?v=[参数]</code></pre>
+      ]]></description>
+      <data_title>使用 yt-dlp 进行下载视频</data_title>
+      <meta>下载视频 · 2026-03-12</meta>
+      <excerpt>使用 yt-dlp 进行下载 YouTube 视频</excerpt>
+      <cover_img>logo/yt-dlp.png</cover_img>
+      <tags>
+        <tag>yt-dlp</tag>
+        <tag>下载</tag>
+        <tag>视频</tag>
+        <tag>YouTube</tag>
+      </tags>
+    </item>
+    <item>
+      <title>本地部署 F5-TTS 进行语音克隆</title>
+      <link>https://blog.2024-10-24.zip/blog.html?id=F5-TTS</link>
+      <guid isPermaLink="false">F5-TTS</guid>
+      <pubDate>Thu, 12 Mar 2026 16:18:00 +0800</pubDate>
+      <description><![CDATA[
+        <p>Python 版本推荐使用 python 3.10 或 3.11，在系统终端确认：</p>
+        <pre><code class="language-javascript">python --version</code></pre>
+        <p>笔者的版本为 python 3.10.11</p>
+        <h3>项目下载</h3>
+        <p>安装 git，下载 GitHub 项目到本地：</p>
+        <pre><code class="language-javascript">git clone https://github.com/SWivid/F5-TTS.git</code></pre>
+        <pre><code class="language-javascript">cd F5-TTS</code></pre>
+        <h3>安装项目依赖</h3>
+        <pre><code class="language-javascript">pip install -r requirements.txt</code></pre>
+        <h3>下载模型</h3>
+        <pre><code class="language-javascript">python download_models.py</code></pre>
+        <p>或者手动下载，模型来自 Hugging Face：</p>
+        <a href="https://huggingface.co/SWivid/F5-TTS" target="_blank">https://huggingface.co/SWivid/F5-TTS</a>
+        <p>在项目文件夹手动创建 /ckpts/F5TTS_Base/，把下载的 model_1200000.safetensors 与 vocab.txt 放进去</p>
+        <h3>启动 Web UI</h3>
+        <pre><code class="language-javascript">python app.py</code></pre>
+        <p>启动成功会出现，并浏览器打开：</p>
+        <pre><code class="language-javascript">http://127.0.0.1:7860</code></pre>
+        <img src="images/2026-03-12-1.jpg" alt="教程运行效果图" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+      ]]></description>
+      <data_title>本地部署 F5-TTS 进行语音克隆</data_title>
+      <meta>语音克隆 · 2026-03-12</meta>
+      <excerpt>通过 Python 本地部署在 127.0.0.1 打开</excerpt>
+      <cover_img>logo/F5-TTS.jpg</cover_img>
+      <tags>
+        <tag>F5-TTS</tag>
+        <tag>语音</tag>
+        <tag>克隆</tag>
+        <tag>web</tag>
+      </tags>
+    </item>
+    <item>
+      <title>如何利用 ImageMagick 在 PNG 中隐写 TXT 文件</title>
+      <link>https://blog.2024-10-24.zip/blog.html?id=ImageMagick-Steganography</link>
+      <guid isPermaLink="false">ImageMagick-Steganography</guid>
+      <pubDate>Wed, 19 Feb 2026 09:30:00 +0800</pubDate>
+      <description><![CDATA[
+         <p>首先需要下载 ImageMagick，下载链接 
+                <a href="https://imagemagick.org/script/download.php" target="_blank" download>
+                    https://imagemagick.org/script/download.php
+                </a>
+            </p>
+        <p>安装好 <strong>ImageMagick</strong> 后，打开系统自带的终端，确保输入以下命令可以查看版本号：</p>
+        <pre><code class="language-bash">magick -version</code></pre>
+        <h3>准备文件</h3>
+        <p>准备以下两个文件：</p>
+        <ul>
+          <li>cover.png（用于隐藏数据的载体图片，建议使用 PNG 无损格式）</li>
+          <li>secret.txt（需要隐藏的文本文件）</li>
+        </ul>
+        <h3>执行隐写命令</h3>
+        <p>使用 <strong>-stegano</strong> 参数将文本文件隐藏到图片中：</p>
+        <pre><code class="language-bash">magick cover.png secret.txt -stegano 0 output.png</code></pre>
+        <p>执行完成后，生成的 <strong>output.png</strong> 即为包含隐藏信息的图片。</p>
+        <h3>提取隐藏的 TXT 文件</h3>
+        <p>如果需要恢复隐藏的数据，可以执行：</p>
+        <pre><code class="language-bash">magick output.png -stegano 0 extracted.txt</code></pre>
+        <p>执行完成后，extracted.txt 即为原始隐藏文件。</p>
+        <h3>注意事项</h3>
+        <ul>
+          <li>建议使用 PNG 格式，避免使用 JPG（有损压缩会破坏隐藏数据）。</li>
+          <li>图片尺寸越大，可隐藏的数据容量越多。</li>
+          <li>隐写不等于加密，如需安全性，请先对文本进行加密再进行隐写。</li>
+        </ul>
+      ]]></description>
+      <data_title>如何利用 ImageMagick 在 PNG 图片中隐藏文件</data_title>
+      <meta>信息隐藏 · 2026-02-19</meta>
+      <excerpt>通过 ImageMagick 的 -stegano 参数，在 PNG 图片中隐藏文本或文件数据，并实现提取。</excerpt>
+      <cover_img>logo/ImageMagick.jpg</cover_img>
+      <tags>
+        <tag>ImageMagick</tag>
+        <tag>隐写</tag>
+        <tag>信息安全</tag>
+        <tag>PNG</tag>
+      </tags>
+    </item>
+    <item>
+      <title>如何利用 glTF-Transform 压缩 GLB</title>
+      <link>https://blog.2024-10-24.zip/blog.html?id=glTF-Transform</link>
+      <guid isPermaLink="false">glTF-Transform</guid>
+      <pubDate>Mon, 08 Dec 2025 16:18:00 +0800</pubDate>
+      <description><![CDATA[
+        <p>在计算机安装 Node.js 后，打开自带的 Powershell 终端，并粘贴以下命令进行安装：</p>
+        <pre><code class="language-javascript">npm install -g @gltf-transform/cli</code></pre>
+        <h3>使用 glTF-Pipeline 命令</h3>
+        <p>Draco 网格压缩：压缩 Mesh 顶点数据</p>
+        <pre><code class="language-javascript">gltf-transform draco in.glb out.glb</code></pre>
+      
+      ]]></description>
+      <data_title>如何利用 glTF-Transform 压缩 GLB 3D 模型文件</data_title>
+      <meta>3D模型压缩 · 2025-12-08</meta>
+      <excerpt>通过 glTF-Transform，对 3D 模型 GLB 文件进行压缩</excerpt>
+      <cover_img>logo/glTF-Transform.jpg</cover_img>
+      <tags>
+        <tag>GLB</tag>
+        <tag>文件压缩</tag>
+        <tag>3D模型</tag>
+      </tags>
+    </item>
+    <item>
+      <title>Chrome APK 运行环境 — ARChon 安装教程</title>
+      <link>https://blog.2024-10-24.zip/blog.html?id=chrome-apk</link>
+      <guid isPermaLink="false">chrome-apk</guid>
+      <pubDate>Thu, 13 Nov 2025 14:00:00 +0800</pubDate>
+      <description><![CDATA[
+        <h3>适用于 Windows 的系统</h3>
+        <p>首先需要下载 Chrome80 便携版，下载链接 
+            <a href="https://blog.2024-10-24.zip/file/chrome80.zip" target="_blank" download>
+                https://blog.2024-10-24.zip/file/chrome80.zip
+            </a>
+        </p>
+        <h3>下载 ARChon 插件扩展</h3>
+        <p>ARChon Runtime for Chrome 的下载链接
+            <a href="https://bitbucket.org/vladikoff/archon/get/v2.1.0-x86_64.zip" target="_blank" download>
+                https://bitbucket.org/vladikoff/archon/get/v2.1.0-x86_64.zip
+            </a>
+        </p>
+        <p>全部解压后，打开运行 Chrome80，在 
+            <a href="chrome://extensions" target="_blank">chrome://extensions</a>
+            扩展程序中打开：开发者模式
+        </p>
+        <h3>安装 ARChon 插件扩展</h3>
+        <p>点击：加载已解压的扩展程序，添加解压 ARChon Runtime for Chrome 后内层的 vladikoff-archon-e3c9b322402a 文件夹</p>
+        <h3>安装 APK 转换工具</h3>
+        <p>在计算机安装 Node.js 后，打开自带的 Powershell 终端，并粘贴以下命令进行安装：</p>
+        <pre><code class="language-javascript">npm install chromeos-apk -g</code></pre>
+        <p>准备一个下载好的 APK，粘贴以下命令进行转换：</p>
+        <pre><code class="language-javascript">chromeos-apk 【替换为apk名称】</code></pre>
+        <p>在目录下打开生成项目的 manifest.json，找到字段"name"的值并复制。继续打开项目的_locales\en\messages.json，在"extName"{}添加"message":"复制的值"，以防止运行时出错</p>
+        <h3>安装 APK 转换的插件扩展</h3>
+        <p>在 Chrome80 的
+            <a href="chrome://extensions" target="_blank">chrome://extensions</a>
+            点击：加载已解压的扩展程序，添加项目文件夹
+        </p>
+        <h3>运行</h3>
+        <p>在 Chrome80 的
+            <a href="chrome://apps" target="_blank">chrome://apps</a>
+            打开刚才添加的项目，运行效果图：
+        </p>
+        <img src="images/2025-11-13-1.jpg" alt="教程运行效果图" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+      ]]></description>
+      <data_title>如何在 chrome 浏览器中运行 Android apk 应用软件 扩展插件</data_title>
+      <meta>扩展插件 · 2025-11-13</meta>
+      <excerpt>在 Chrome80 版本演示运行，依赖于 ARChon Runtime for Chrome 第三方扩展。</excerpt>
+      <cover_img>logo/chrome-apk.jpg</cover_img>
+      <tags>
+        <tag>Chrome</tag>
+        <tag>扩展插件</tag>
+        <tag>Android</tag>
+      </tags>
+    </item>
+  </channel>
+</rss>

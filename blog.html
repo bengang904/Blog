@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教程文章详情</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" id="shortcutIconLink" type="image/x-icon" href="/favicon.ico"> 
+    <link rel="icon" id="iconLink" type="image/x-icon" href="/favicon.ico"> 
+    <link rel="apple-touch-icon-precomposed" id="appleIconLink">
+    <meta name="msapplication-TileImage" content="" id="msTileImageMeta">
+    <style>
+        :root{
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text-color: #e2e8f0;
+            --muted: #94a3b8;
+            --accent: #38bdf8;
+            --header-bg: #0f172a;
+            --logo-gradient: linear-gradient(135deg, #0f766e, #06b6d4);
+            --radius: 12px;
+            --max-w: 1100px;
+            color-scheme: dark;
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+        html[data-theme='light'] {
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text-color: #0f172a;
+            --muted: #64748b;
+            --accent: #0ea5e9;
+            --header-bg: #f1f5f9;
+            --logo-gradient: linear-gradient(135deg, #0ea5e9, #0ea5a3);
+            color-scheme: light;
+        }
+
+        *{
+            box-sizing:border-box;
+            word-wrap: break-word; 
+            overflow-wrap: break-word; 
+        }
+        
+        html,body{
+            min-height:100%;
+            margin:0;
+            background:var(--bg);
+            color:var(--text-color);
+            overflow-x: hidden;
+        }
+        a{color:var(--accent);text-decoration:none}
+        a:hover{text-decoration:underline}
+
+        .container{
+            max-width:800px;
+            width: 100%; 
+            margin:32px auto; 
+            padding:20px;
+        }
+        
+        header{
+            display:flex;
+            align-items:center;
+            gap:16px;
+            justify-content:space-between;
+            background:var(--header-bg);
+            padding: 10px 20px;
+            border-radius: var(--radius);
+        }
+        .brand{display:flex;align-items:center;gap:12px}
+        .logo{
+            width:52px;
+            height:52px;
+            aspect-ratio: 1 / 1; 
+            border-radius:10px;
+            background:var(--logo-gradient);
+            display:grid;
+            place-items:center;
+            font-size:22px
+        }
+        .logo img{ 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            border-radius: 10px; 
+        }
+        .logo svg{
+            width: 60%;
+            height: 60%;
+            fill: #fff;
+        }
+        
+        .site-title{font-weight:700;font-size:18px}
+        .site-sub{font-size:12px;color:var(--muted)}
+        .back-link{color:var(--muted);font-size:14px;display:flex;align-items:center;gap:4px}
+        .back-link:hover{color:var(--text-color)}
+        .meta{font-size:14px;color:var(--muted);margin-bottom:10px;}
+        .content-card{
+            background:var(--card);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding:30px;
+            border-radius:var(--radius);
+            margin-top:20px;
+        }
+        .content-card h1{margin-top:0;font-size:28px;}
+        .content-card h3{color:var(--accent);margin-top:25px;}
+        .content-card p, .content-card li {line-height:1.6;color:var(--text-color);}
+        
+        .content-card pre, .content-card code {
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 13px;
+            line-height: 1.6; 
+            white-space: pre-wrap;     
+            word-break: break-all;     
+        }
+        
+        .content-card :not(pre) > code {
+            background: var(--header-bg); 
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 90%;
+            color: var(--text-color);
+        }
+
+        .content-card ul { padding-left: 20px; }
+
+        @media (max-width:900px){
+            .container{padding:10px;}
+            .content-card{padding:20px;}
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <div class="container">
+        <header>
+            <div class="brand">
+                <div class="logo" aria-hidden>
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 19V6c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1h-4v2h-2v-2H5c-.55 0-1-.45-1-1zm2-2h12V7H6v10zM8 9h8v2H8V9zm0 4h8v2H8v-2z"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="site-title">教程博客</div>
+                    <div class="site-sub">实用教程 · 源码示例 · 快速入门</div>
+                </div>
+            </div>
+            <a href="index.html" class="back-link"><i class="ri-arrow-left-line"></i> 返回首页</a>
+        </header>
+        <main id="tutorial-content" class="content-card">
+            <h1>文章加载中...</h1>
+        </main>
+        <footer>
+            </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script>
+        const contentContainer = document.getElementById('tutorial-content');
+
+        function getTutorialId() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('id');
+        }
+        
+        function getTutorialContentFromXML(xmlDoc, tutorialId) {
+            
+            const itemElements = xmlDoc.querySelectorAll('item');
+
+            for (const itemElement of itemElements) {
+                const guidElement = itemElement.querySelector('guid');
+                if (guidElement && guidElement.textContent.trim() === tutorialId) {
+                    
+                    const descriptionElement = itemElement.querySelector('description');
+                    
+                    if (descriptionElement) {
+                        const content = descriptionElement.textContent.trim();
+                        return content;
+                    }
+                }
+            }
+            return null;
+        }
+
+        function updateFavicons(url) {
+            const shortcutIconLink = document.getElementById('shortcutIconLink');
+            const iconLink = document.getElementById('iconLink');
+            const appleIconLink = document.getElementById('appleIconLink');
+            const msTileImageMeta = document.getElementById('msTileImageMeta');
+            
+            let type = 'image/x-icon';
+            if (url.endsWith('.png')) {
+                type = 'image/png';
+            } else if (url.endsWith('.jpg') || url.endsWith('.jpeg')) {
+                type = 'image/jpeg';
+            }
+
+            if (shortcutIconLink) {
+                shortcutIconLink.href = url;
+                shortcutIconLink.type = type;
+            }
+            if (iconLink) {
+                iconLink.href = url;
+                iconLink.type = type;
+            }
+            if (appleIconLink) {
+                appleIconLink.href = url;
+            }
+            if (msTileImageMeta) {
+                msTileImageMeta.content = url;
+            }
+        }
+
+        function getPostInfoFromXML(xmlDoc, tutorialId) {
+            const itemElements = xmlDoc.querySelectorAll('item');
+            for (const itemElement of itemElements) {
+                const guidElement = itemElement.querySelector('guid');
+                if (guidElement && guidElement.textContent.trim() === tutorialId) {
+                    const getText = (sel) => {
+                        const el = itemElement.querySelector(sel);
+                        return el ? el.textContent.trim() : '';
+                    };
+                    return {
+                        id: tutorialId,
+                        title: getText('title'),
+                        data_title: getText('data_title') || getText('title'),
+                        meta: getText('meta'),
+                        excerpt: getText('excerpt'),
+                        cover_img: getText('cover_img')
+                    };
+                }
+            }
+            return null;
+        }
+
+        async function loadTutorialContent(id) {
+            if (!id) {
+                contentContainer.innerHTML = '<h1>错误</h1><p class="meta">未指定文章 ID。</p>';
+                return;
+            }
+            try {
+                const tutorialsRes = await fetch('tutorials.xml');
+                if (!tutorialsRes.ok) throw new Error('Failed to load tutorials.xml');
+                
+                const xmlText = await tutorialsRes.text(); 
+                
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(xmlText, "text/xml"); 
+                
+                if (xmlDoc.getElementsByTagName('parsererror').length > 0) {
+                    console.error('XML Parser Error:', xmlDoc.getElementsByTagName('parsererror')[0].textContent);
+                    throw new Error('Failed to parse tutorials.xml (XML structure error)');
+                }
+
+                const postInfo = getPostInfoFromXML(xmlDoc, id); 
+                const tutorialContentHtml = getTutorialContentFromXML(xmlDoc, id); 
+                
+                if (postInfo && tutorialContentHtml) {
+                    
+                    if (postInfo.cover_img) {
+                        updateFavicons(postInfo.cover_img);
+                    }
+
+                    contentContainer.innerHTML = `
+                        <h1>${postInfo.title}</h1>
+                        <p class="meta">${postInfo.meta}</p>
+                        <hr style="border-color: rgba(255,255,255,0.1); margin-bottom: 20px;">
+                        ${tutorialContentHtml}
+                    `;
+                    document.title = postInfo.title;
+                    
+                    Prism.highlightAll();
+
+                } else {
+                    contentContainer.innerHTML = '<h1>未找到文章</h1><p class="meta">指定 ID 的文章信息或详细内容不存在。</p>';
+                    document.title = '404 - 未找到';
+                }
+
+            } catch (error) {
+                console.error('加载文章详情失败:', error);
+                contentContainer.innerHTML = `<h1>加载失败</h1><p class="meta">无法连接到数据源或解析数据出错: ${error.message}</p>`;
+            }
+        }
+        loadTutorialContent(getTutorialId());
+        const html = document.documentElement;
+        let savedTheme = localStorage.getItem('theme') || 'dark'; 
+        html.setAttribute('data-theme', savedTheme);
+    </script>
+</body>
+</html>

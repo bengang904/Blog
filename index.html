@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://2024-10-24.zip/images/blog.webp">
+    <link rel="icon" href="https://2024-10-24.zip/images/blog.webp">
+    <link rel="apple-touch-icon-precomposed" href="https://2024-10-24.zip/images/blog.webp">
+    <meta name="msapplication-TileImage" content="https://2024-10-24.zip/images/blog.webp">
+    <meta name="description" content="十月黑雨教程博客 — 分享来自十月黑雨" />
+    <title>Blog — 十月黑雨</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css"> 
+    <style>
+        :root{
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text-color: #e2e8f0;
+            --muted: #94a3b8;
+            --accent: #38bdf8;
+            --glass: rgba(255,255,255,0.08);
+            --header-bg: #0f172a;
+            --logo-gradient: linear-gradient(135deg, #0f766e, #06b6d4);
+            --button-gradient: linear-gradient(90deg,#06b6d4,#0ea5a3);
+            --input-border: rgba(255,255,255,0.1);
+            --radius: 12px;
+            --max-w: 1100px;
+            color-scheme: dark;
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+        html[data-theme='light'] {
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text-color: #0f172a;
+            --muted: #64748b;
+            --accent: #0ea5e9;
+            --glass: rgba(0,0,0,0.05);
+            --header-bg: #f1f5f9;
+            --logo-gradient: linear-gradient(135deg, #0ea5e9, #0ea5a3);
+            --button-gradient: linear-gradient(90deg,#0ea5e9,#0ea5a3);
+            --input-border: rgba(0,0,0,0.1);
+            
+            color-scheme: light;
+        }
+        *{box-sizing:border-box}
+        html,body{
+            height:100%;
+            margin:0;
+            background:var(--bg);
+            color:var(--text-color);
+        }
+        a{color:inherit;text-decoration:none}
+        a:hover{color:var(--accent)}
+        .container{max-width:var(--max-w);margin:32px auto;padding:20px}
+        header{
+            display:flex;
+            align-items:center;
+            gap:16px;
+            justify-content:space-between;
+            background:var(--header-bg);
+            padding: 10px 20px;
+            border-radius: var(--radius);
+        }
+        .brand{display:flex;align-items:center;gap:12px}
+        .logo{
+            width:52px;
+            height:52px;
+            border-radius:10px;
+            background:var(--logo-gradient);
+            display:grid;
+            place-items:center;
+            font-size:22px
+        }
+        .logo svg{
+            width: 60%;
+            height: 60%;
+            fill: #fff;
+        }
+        .site-title{font-weight:700;font-size:18px}
+        .site-sub{font-size:12px;color:var(--muted)}
+        .top-actions{display:flex;gap:8px;align-items:center}
+        .btn{
+            background:transparent;
+            border:1px solid var(--input-border);
+            padding:8px 12px;
+            border-radius:10px;
+            cursor:pointer;
+            transition: background 0.2s, color 0.2s;
+            color: var(--text-color);
+        }
+        .btn.primary{
+            background:var(--button-gradient);
+            color:var(--bg);
+            border:0;
+            font-weight: 600;
+        }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        #themeToggle {
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            display: grid;
+            place-items: center;
+            font-size: 18px;
+        }
+        .layout{display:grid;grid-template-columns:1fr 320px;gap:24px;margin-top:26px}
+        .hero{
+            background:var(--card);
+            border: 1px solid var(--input-border);
+            padding:22px;
+            border-radius:var(--radius);
+            display:flex;
+            flex-direction:column;
+            gap:10px
+        }
+        .hero h1{margin:0;font-size:22px;color:var(--accent)}
+        .hero p{margin:0;color:var(--muted)}
+
+        .posts{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:12px}
+        .post{
+            background:var(--card);
+            border: 1px solid var(--input-border);
+            padding:16px;
+            border-radius:12px;
+            display:flex;
+            gap:12px;
+            align-items:flex-start;
+            transition: transform 0.2s;
+        }
+        .post:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .thumb{width:120px;height:120px;border-radius:8px;background:var(--bg);flex-shrink:0;display:grid;place-items:center;font-weight:700;overflow:hidden}
+        .thumb img{width:100%;height:100%;object-fit:cover;border-radius:8px}
+        .meta{font-size:12px;color:var(--muted)}
+        .post h3{margin:0;font-size:16px}
+        .excerpt{margin-top:6px;color:var(--muted);font-size:13px}
+
+        aside{position:relative}
+        .card{
+            background:var(--card);
+            border: 1px solid var(--input-border);
+            padding:16px;
+            border-radius:12px
+        }
+        .search{display:flex;gap:8px}
+        .search input{
+            flex:1;
+            padding:10px;
+            border-radius:10px;
+            border:1px solid var(--input-border);
+            background:transparent;
+            color:inherit;
+            transition: border-color 0.2s;
+        }
+        .search input:focus {
+            border-color: var(--accent);
+            outline: none;
+        }
+
+        .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+        .tag{
+            padding:6px 8px;
+            border-radius:8px;
+            background:var(--glass);
+            font-size:13px;
+            color:var(--muted);
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .tag:hover, .tag.active{
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        footer{margin-top:32px;text-align:center;color:var(--muted);font-size:13px;padding:28px 0}
+
+        @media (max-width:900px){
+            .layout{grid-template-columns:1fr;}
+            .posts{grid-template-columns:1fr}
+            nav{display:none}
+            header{padding: 10px 15px;}
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <div class="container">
+        <header>
+            <div class="brand">
+                <div class="logo" aria-hidden>
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 19V6c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1h-4v2h-2v-2H5c-.55 0-1-.45-1-1zm2-2h12V7H6v10zM8 9h8v2H8V9zm0 4h8v2H8v-2z"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="site-title">教程博客</div>
+                    <div class="site-sub">实用教程 · 源码示例 · 快速入门</div>
+                </div>
+            </div>
+            <div class="top-actions">
+                <button class="btn" id="themeToggle" aria-label="切换主题模式">
+                    <i id="themeIcon" class="ri-moon-line"></i>
+                </button>
+            </div>
+        </header>
+        <main class="layout">
+            <section>
+                <div class="hero" role="region" aria-label="简介">
+                    <h1>欢迎来到教程博客 — 学习、实践、分享</h1>
+                    <p>我们发布简洁、实用的教程，从入门到进阶。下面是最新的文章 — 点击任意条目查看完整教程与代码示例。</p>
+                </div>
+                <div class="posts" id="posts">
+                    </div>
+                <div style="margin-top:18px;display:flex;gap:10px;align-items:center;justify-content:space-between">
+                    <div style="color:var(--muted);font-size:13px" id="pageInfo"></div>
+                    <div style="display:flex;gap:8px">
+                        <button class="btn" id="prevPage">上一页</button>
+                        <button class="btn" id="nextPage">下一页</button>
+                    </div>
+                </div>
+            </section>
+            <aside>
+                <div class="card">
+                    <form class="search" onsubmit="return false">
+                        <input id="searchInput" placeholder="搜索文章标题或关键词..." aria-label="搜索文章" />
+                        <button class="btn" id="clearSearch">清空</button>
+                    </form>
+                    <div style="margin-top:14px">
+                        <strong>热门标签</strong>
+                        <div class="tags" id="tagList" aria-label="热门标签">
+                            <span class="tag" data-tag="Chrome">Chrome</span>
+                            <span class="tag" data-tag="扩展插件">扩展插件</span>
+                            <span class="tag" data-tag="Android">Android</span>
+                            <span class="tag" data-tag="JavaScript">JavaScript</span>
+                            <span class="tag" data-tag="Node.js">Node.js</span>
+                        </div>
+                    </div>
+                    <div style="margin-top:14px">
+                        <strong>交流</strong>
+                        <p class="meta" style="margin:8px 0">有问题？点击进入我们的交流区。</p>
+                        <button class="btn primary" id="chatButton" style="width:100%;">
+                            进入聊天区
+                        </button>
+                    </div>
+                </div>
+                <div style="height:18px"></div>
+                <div class="card" style="margin-top:12px">
+                    <strong>关于作者</strong>
+                    <p class="meta" style="margin-top:8px">这里是一个热爱写教程和源码分享的独立作者，主要写前端工程与工具链优化技巧。</p>
+                </div>
+            </aside>
+        </main>
+
+        <footer>
+            <i class="fas fa-rss rss-icon"></i> 添加 <strong><a href="tutorials.xml"  target="_blank" style="color:#5ab3ff;">RSS</a></strong> 订阅
+        </footer>
+    </div>
+    <script>
+        const POSTS_PER_PAGE = 4;
+        let allPosts = []; 
+        let filteredPosts = []; 
+        let currentPage = 1;
+        let activeTag = null; 
+        const searchInput = document.getElementById('searchInput');
+        const clearBtn = document.getElementById('clearSearch');
+        const pageInfo = document.getElementById('pageInfo');
+        const prevPageBtn = document.getElementById('prevPage');
+        const nextPageBtn = document.getElementById('nextPage');
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const chatButton = document.getElementById('chatButton');
+        const postsContainer = document.getElementById('posts');
+        const tagList = document.getElementById('tagList'); 
+        const html = document.documentElement;
+        let currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        function applyTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+
+            if (theme === 'light') {
+                themeIcon.className = 'ri-sun-line';
+            } else {
+                themeIcon.className = 'ri-moon-line';
+            }
+        }
+        themeToggle.addEventListener('click', () => {
+            currentTheme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            applyTheme(currentTheme);
+        });
+        applyTheme(currentTheme);
+        function createPostElement(postData) {
+    const articleLink = `blog.html?id=${postData.id}`; 
+    const article = document.createElement('article');
+    article.className = 'post';
+    article.dataset.title = postData.data_title || postData.title;
+    const altText = postData.alt || postData.title || '';
+    article.innerHTML = `
+        <a href="${articleLink}" style="flex-shrink: 0; display: contents;"> 
+            <div class="thumb">
+                <img src="${postData.cover_img}" alt="${altText}">
+            </div>
+        </a>
+        <div>
+            <div class="meta">${postData.meta}</div>
+            <h3><a href="${articleLink}">${postData.title}</a></h3>
+            <p class="excerpt">${postData.excerpt}</p>
+        </div>
+    `;
+    return article;
+}
+        function displayPosts() {
+            const totalPosts = filteredPosts.length;
+            const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
+            if (totalPosts === 0) {
+                currentPage = 0;
+            } else if (currentPage > totalPages) {
+                currentPage = totalPages;
+            } else if (currentPage < 1) {
+                currentPage = 1;
+            }
+            const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
+            const endIndex = startIndex + POSTS_PER_PAGE;
+            postsContainer.innerHTML = '';
+            if (totalPosts > 0) {
+                for (let i = startIndex; i < endIndex && i < totalPosts; i++) {
+                    const postElement = createPostElement(filteredPosts[i]);
+                    postsContainer.appendChild(postElement);
+                }
+            } else {
+                 postsContainer.innerHTML = '<p style="padding: 16px; color: var(--muted);">没有找到相关的文章。</p>';
+            }
+
+            updatePaginationUI(currentPage, totalPages);
+        }
+        function filterPosts(searchTerm, tag) {
+            const s = searchTerm ? searchTerm.trim().toLowerCase() : '';
+            filteredPosts = allPosts.filter(p => {
+                const titleMatch = !s || p.data_title.toLowerCase().includes(s) || p.excerpt.toLowerCase().includes(s);
+                const tagMatch = !tag || (p.tags && p.tags.map(t => t.toLowerCase()).includes(tag.toLowerCase()));
+                return titleMatch && tagMatch;
+            });
+
+            currentPage = 1;
+            displayPosts();
+        }
+        function handleTagClick(e) {
+            if (!e.target.classList.contains('tag')) return;
+            const selectedTag = e.target.dataset.tag;
+            searchInput.value = '';
+            if (activeTag === selectedTag) {
+                activeTag = null;
+            } else {
+                activeTag = selectedTag;
+            }
+            document.querySelectorAll('.tag').forEach(tagEl => {
+                if (tagEl.dataset.tag === activeTag) {
+                    tagEl.classList.add('active');
+                } else {
+                    tagEl.classList.remove('active');
+                }
+            });
+            filterPosts('', activeTag);
+        }
+        function updatePaginationUI(current, total) {
+            if (total === 0) {
+                pageInfo.textContent = '暂无文章';
+                prevPageBtn.disabled = true;
+                nextPageBtn.disabled = true;
+            } else {
+                pageInfo.textContent = `第 ${current} 页 / 共 ${total} 页`;
+                prevPageBtn.disabled = (current <= 1);
+                nextPageBtn.disabled = (current >= total);
+            }
+        }
+        function parsePostsFromXML(xmlDoc) {
+            const items = xmlDoc.querySelectorAll('item');
+            const posts = [];
+            items.forEach(item => {
+                const getText = (sel) => {
+                    const el = item.querySelector(sel);
+                    return el ? el.textContent.trim() : '';
+                };
+                const tags = Array.from(item.querySelectorAll('tags > tag')).map(t => t.textContent.trim()).filter(Boolean);
+                posts.push({
+                    id: getText('guid'),
+                    title: getText('title'),
+                    data_title: getText('data_title') || getText('title'),
+                    meta: getText('meta'),
+                    excerpt: getText('excerpt'),
+                    cover_img: getText('cover_img'),
+                    tags: tags
+                });
+            });
+            return posts;
+        }
+        async function loadPosts() {
+            try {
+                const response = await fetch('tutorials.xml');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const xmlText = await response.text();
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
+                if (xmlDoc.getElementsByTagName('parsererror').length > 0) {
+                    throw new Error('Failed to parse tutorials.xml');
+                }
+                const data = parsePostsFromXML(xmlDoc);
+                allPosts = data;
+                filteredPosts = allPosts;
+                displayPosts();
+            } catch (error) {
+                console.error('加载文章数据失败:', error);
+                postsContainer.innerHTML = '<p style="padding: 16px; color: var(--accent);">无法加载文章数据，请检查 tutorials.xml 文件。</p>';
+                updatePaginationUI(0, 0); 
+            }
+        }
+        chatButton.addEventListener('click', () => {
+            window.open('https://2024-10-24.zip/chat.txt', '_blank');
+        });
+        searchInput.addEventListener('input', e => {
+            activeTag = null; 
+            document.querySelectorAll('.tag').forEach(tagEl => tagEl.classList.remove('active'));
+            filterPosts(e.target.value, activeTag);
+        });
+        clearBtn.addEventListener('click', e => { 
+            e.preventDefault(); 
+            searchInput.value = ''; 
+            activeTag = null;
+            document.querySelectorAll('.tag').forEach(tagEl => tagEl.classList.remove('active'));
+            filterPosts('', null);
+        });
+        tagList.addEventListener('click', handleTagClick);
+        prevPageBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                displayPosts();
+            }
+        });
+        nextPageBtn.addEventListener('click', () => {
+            const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+            if (currentPage < totalPages) {
+                currentPage++;
+                displayPosts();
+            }
+        });
+        loadPosts();
+    </script>
+
+</body></html>
+
+
