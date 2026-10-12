@@ -10,7 +10,7 @@
     <item>
       <title>快速大文件切片</title>
       <link>https://blog.2024-10-24.zip/blog.html?id=file-part</link>
-      <guid isPermaLink="false">git</guid>
+      <guid isPermaLink="false">file-part</guid>
       <pubDate>Tue, 29 Sep 2026 16:30:00 +0800</pubDate>
       <description><![CDATA[
         <p>在项目根目录新建一个名为 part 的文件夹</p>
